@@ -20,10 +20,11 @@ File = 'score.pkl'
 
 
 def welcomeScreen():
-    playerx = int(SCREENWIDTH/5)
+    playerx = int(SCREENWIDTH/6)
     playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2)
     messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
     messagey = int(SCREENHEIGHT*0.13)
+    scorex = int((SCREENWIDTH - GAME_SPRITES['score'].get_width())/2)
     
     basex = 0
     global HIGHSCORE
@@ -35,8 +36,13 @@ def welcomeScreen():
     else:
         HIGHSCORE = pickle.load(fileobj)
         print(HIGHSCORE)
+    
+    lv = pygame.mixer.music.get_volume()
+    if lv > 0.002:
+        pygame.mixer.music.set_volume(0.002)    
 
     while True:
+        GAME_SOUNDS['welcome'].play()
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 pygame.quit()
@@ -50,7 +56,7 @@ def welcomeScreen():
                 SCREEN.blit(GAME_SPRITES['player'], (playerx, playery)) 
                 SCREEN.blit(GAME_SPRITES['message'], (messagex, messagey)) 
                 SCREEN.blit(GAME_SPRITES['base'], (basex, GROUNDY)) 
-                SCREEN.blit(GAME_SPRITES['score'], (messagex, (SCREENHEIGHT*0.65)))
+                SCREEN.blit(GAME_SPRITES['score'], (scorex, (SCREENHEIGHT*0.55)))
                 myDigits = [int(x) for x in list(str(HIGHSCORE))]
                 width = 0
                 for digit in myDigits:
@@ -58,10 +64,11 @@ def welcomeScreen():
                 Xoffset = (SCREENWIDTH - width)/2
         
                 for digit in myDigits:
-                    SCREEN.blit(GAME_SPRITES['numbers'][digit], (Xoffset, (SCREENHEIGHT*0.61) + GAME_SPRITES['score'].get_height() ))
+                    SCREEN.blit(GAME_SPRITES['numbers'][digit], (Xoffset, (SCREENHEIGHT*0.55) + GAME_SPRITES['score'].get_height() ))
                     Xoffset += GAME_SPRITES['numbers'][digit].get_width()
                 pygame.display.update()
-                FPSCLOCK.tick(FPS) 
+                FPSCLOCK.tick(FPS)
+    pygame.mixer.music.set_volume(lv)         
 
 def getRandomPipe():
     pipeHeight = GAME_SPRITES['pipe'][0].get_height()
@@ -133,7 +140,7 @@ def mainGame():
                 score+=1
                 print(f"your score is: {score}")
                 if score%100 == 0:
-                    GAME_SOUNDS['hit'].play()
+                    GAME_SOUNDS['won'].play()
                 else:
                     GAME_SOUNDS['point'].play()
 
@@ -225,6 +232,9 @@ if __name__ == "__main__":
     GAME_SOUNDS['point'] = pygame.mixer.Sound('gallery/audio/point.wav')
     GAME_SOUNDS['swoosh'] = pygame.mixer.Sound('gallery/audio/swoosh.wav')
     GAME_SOUNDS['wing'] = pygame.mixer.Sound('gallery/audio/wing.wav')
+    GAME_SOUNDS['won'] = pygame.mixer.Sound('gallery/audio/won.wav')
+    GAME_SOUNDS['welcome'] = pygame.mixer.Sound('gallery/audio/welcome.wav')
+
 
     GAME_SPRITES['background'] = pygame.image.load(BACKGROUND).convert()
     GAME_SPRITES['player'] = pygame.image.load(PLAYER).convert_alpha()
