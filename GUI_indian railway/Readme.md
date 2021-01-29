@@ -4,7 +4,7 @@
 
 <h2>Demo<h2>
 
-![](demo/demo.gif)
+[![Watch the video](/demo/still.jpg)](https://youtu.be/XHg3PumH8ag)
 
 <br>
 
