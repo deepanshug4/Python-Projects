@@ -1,4 +1,32 @@
 # GUI for Railway Announcement System.
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-blue.svg?longCache=true&style=plastic)](https://www.python.org/) [![GitHub license](https://img.shields.io/aur/license/yaourt.svg?style=popout-square?longCache=true&style=plastic)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE) ![PyPI - Status](https://img.shields.io/pypi/status/Django.svg?style=plastic)
+
+
+<h2>Demo<h2>
+
+![](demo/demo.gif)
+
+<br>
+
+<h2> Download and Installation</h2>
+<ul>
+<li> Clone the repository</li>
+<pre>git clone https://github.com/boudhayan-dev/Birthday</pre>
+<li>Create virtual environment and activate it</li>
+<pre>
+virtualenv venv
+</pre>
+<li>Activate the virtualenv</li>
+<pre>
+cd venv/Scripts<br>
+activate
+cd ../../
+</pre>
+<li>Install all dependencies</li>
+<pre>
+pip install -r requirements.txt
+</pre>
+</ul>
 
 > ## There are three python files.
 > + **```Main.py```**
