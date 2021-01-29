@@ -11,7 +11,7 @@
 <h2> Download and Installation</h2>
 <ul>
 <li> Clone the repository</li>
-<pre>git clone https://github.com/boudhayan-dev/Birthday</pre>
+<pre>git clone https://github.com/deepanshug4/Python-Projects </pre>
 <li>Create virtual environment and activate it</li>
 <pre>
 virtualenv venv
@@ -45,12 +45,3 @@ Fill in the details to create additional announcements.
 >>This is the audio file used to create the announcements.
 
 ---
-
-## Virtual Environment
-To create a virtual environment use the follow commands. <br>
-- virtualenv venv
-- cd venv\scripts\activate.bat (to start the virtual environment)
-- pip install -r requiremts.txt (to install for the required modules)
-
----
-
